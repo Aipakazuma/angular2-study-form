@@ -45,3 +45,23 @@ import {
   AbstractControl
 } from '@angular/forms';
 ```
+
+# 試したこと
+
+## Enter keyを無効にしたい
+
+```html
+<form [formGroup]="myForm"
+      (ngSubmit)="onSubmit(myForm.value)"
+      (keydown.enter)="keyDown($event)" <!-- 追加 -->
+      class="ui form"></form>
+```
+
+コンポーネントに下記関数を追加
+
+```javascript
+keyDown(event: any): void {
+  console.log('You just clicked entry.');
+  return event.preventDefault();
+}
+```
