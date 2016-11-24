@@ -2,10 +2,10 @@
   <h2 class="ui header">Demo Form: Sku</h2>
   <form [formGroup]="myForm"
         (ngSubmit)="onSubmit(myForm.value)"
+        (keydown.enter)="keyDown($event)"
         class="ui form">
 
-    <div class="field"
-      [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
+    <div class="field" [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
 
       <div class="form-group">
         <label for="skuInput">SKU</label>

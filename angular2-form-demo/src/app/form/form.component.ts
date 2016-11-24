@@ -46,6 +46,12 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(value: string): void {
+    event.preventDefault();
     console.log('you submitted value:', value);
+  }
+
+  keyDown(event: any): void {
+    console.log('You just clicked entry.');
+    return event.preventDefault();
   }
 }
