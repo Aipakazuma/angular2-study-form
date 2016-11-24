@@ -25,6 +25,18 @@ export class FormComponent implements OnInit {
         skuValidator
       ])]
     });
+
+    this.myForm.controls['sku'].valueChanges.subscribe(
+      (value: string) => {
+        console.log('sku changed to:', value);
+      }
+    );
+
+    this.myForm.valueChanges.subscribe(
+      (form: any) => {
+        console.log('form changed to:', form);
+      }
+    );
   }
 
   ngOnInit() {
@@ -33,5 +45,4 @@ export class FormComponent implements OnInit {
   onSubmit(value: string): void {
     console.log('you submitted value:', value);
   }
-
 }
