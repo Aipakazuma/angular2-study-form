@@ -5,7 +5,7 @@
         class="ui form">
 
     <div class="field"
-      [class.error]="!sku.valid && sku.touched">
+      [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
 
       <label for="skuInput">SKU</label>
       <input type="text"
@@ -13,10 +13,10 @@
              placeholder="SKU"
              [formControl]="myForm.controls['sku']">
 
-      <div *ngIf="!sku.valid"
+      <div *ngIf="!myForm.controls['sku'].valid"
         class="ui error message">SKU is invalid</div>
 
-      <div *ngIf="sku.hasError('required')"
+      <div *ngIf="myForm.controls['sku'].hasError('required')"
         class="ui error message">SKU is required</div>
     </div>
 

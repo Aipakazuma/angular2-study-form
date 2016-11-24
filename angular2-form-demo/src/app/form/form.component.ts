@@ -8,13 +8,11 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 })
 export class FormComponent implements OnInit {
   myForm: FormGroup;
-  sku: AbstractControl;
 
   constructor(formBuilder: FormBuilder) {
     this.myForm = formBuilder.group({
       'sku': [, Validators.required]
     });
-    this.sku = this.myForm.controls['sku'];
   }
 
   ngOnInit() {
