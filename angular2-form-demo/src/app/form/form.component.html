@@ -7,22 +7,38 @@
     <div class="field"
       [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
 
-      <label for="skuInput">SKU</label>
-      <input type="text"
-             id="skuInput"
-             placeholder="SKU"
-             [formControl]="myForm.controls['sku']">
+      <div class="form-group">
+        <label for="skuInput">SKU</label>
+        <input type="text"
+               id="skuInput"
+               placeholder="SKU"
+               [formControl]="myForm.controls['sku']">
 
-      <div *ngIf="!myForm.controls['sku'].valid"
-        class="ui error message">SKU is invalid</div>
+        <div *ngIf="!myForm.controls['sku'].valid"
+          class="ui error message">SKU is invalid</div>
 
-      <div *ngIf="myForm.controls['sku'].hasError('required')"
-        class="ui error message">SKU is required</div>
+        <div *ngIf="myForm.controls['sku'].hasError('required')"
+          class="ui error message">SKU is required</div>
 
-      <div *ngIf="myForm.controls['sku'].hasError('invalidSku')"
-        class="ui error message">SKU must begin with <span>123</span></div>
-    </div>
+        <div *ngIf="myForm.controls['sku'].hasError('invalidSku')"
+          class="ui error message">SKU must begin with <span>123</span></div>
+      </div>
 
+      <div class="form-group">
+        <label for="skuInput">test_field_1</label>
+          <input type="text"
+                 id="skuInput"
+                 placeholder="SKU"
+                 [formControl]="myForm.controls['test_field_1']">
+
+          <div *ngIf="!myForm.controls['test_field_1'].valid"
+            class="ui error message">test_field_1 is invalid</div>
+
+          <div *ngIf="myForm.controls['test_field_1'].hasError('required')"
+            class="ui error message">test_field_1 is required</div>
+
+        </div>
+      </div>
 
     <div *ngIf="!myForm.valid"
       class="ui error message">Form is invalid</div>

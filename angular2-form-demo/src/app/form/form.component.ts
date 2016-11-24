@@ -23,6 +23,9 @@ export class FormComponent implements OnInit {
       'sku': [, Validators.compose([
         Validators.required,
         skuValidator
+      ])],
+      'test_field_1': [, Validators.compose([
+        Validators.required
       ])]
     });
 
