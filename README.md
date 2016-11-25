@@ -77,3 +77,20 @@ keyDown(event: any): void {
   return event.preventDefault();
 }
 ```
+
+## 他の入力情報と比較してvalidateしたい
+
+`controls.valueChanges`を使って、他の項目と比較することができました。
+
+```javascript
+// 日付入力項目が２つあって
+// start ~ end の項目を用意
+// endはstartを下回ってはいけないので、endの変更を検知して、startと比較する
+this.myForm.controls['test_datetime_validate_end'].valueChanges.subscribe(
+  (value: string) => {
+    if (! TimeMath.sub(value, this.myForm.controls['test_datetime_validate_start'].value)) {
+      this.myForm.controls['test_datetime_validate_end'].setValue(this.myForm.controls['test_datetime_validate_start'].value);
+    }
+  }
+);
+```
