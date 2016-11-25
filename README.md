@@ -56,7 +56,7 @@ todo
 * [from ~ toのようなフォームの場合、矛盾が起きないようにカスタムバリデーションを用意したい](#他の入力情報と比較してvalidateしたい)
   * 09:00 ~ 10:00はおｋ
   * 10:00 = 09:00はダメみたいな
-* [datepickerと組み合わせたinput formがほしい](#datepickerと組み合わせたinput formがほしい)
+* [datepickerと組み合わせたinput formがほしい](#datepickerと組み合わせたinput-formがほしい)
   * http://dbushell.github.io/Pikaday/
   * pikadayってやつがいまのところよさそう
 
