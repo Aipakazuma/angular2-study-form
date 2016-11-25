@@ -48,6 +48,18 @@ import {
 
 # 試したこと
 
+## 試したいこと
+
+todo
+
+* Enter keyを無効にしたい
+* from ~ toのようなフォームの場合、矛盾が起きないようにカスタムバリデーションを用意したい
+  * 09:00 ~ 10:00はおｋ
+  * 10:00 = 09:00はダメみたいな
+* datepickerと組み合わせたinput formがほしい
+  * http://dbushell.github.io/Pikaday/
+  * pikadayってやつがいまのところよさそう
+
 ## Enter keyを無効にしたい
 
 ```html

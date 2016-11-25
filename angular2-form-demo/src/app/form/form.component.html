@@ -37,8 +37,21 @@
           <div *ngIf="myForm.controls['test_field_1'].hasError('required')"
             class="ui error message">test_field_1 is required</div>
 
-        </div>
       </div>
+
+      <div class="form-group">
+        <label for="test-datetime">test_datetime_validate_start</label>
+        <select id="test_datetime_validate_start"
+          [formControl]="myForm.controls['test_datetime_validate_start']">
+          <option *ngFor="let dateString of datetime" [value]="dateString">{{dateString}}</option>
+        </select>
+        <span>〜</span>
+        <select id="test_datetime_validate_end"
+          [formControl]="myForm.controls['test_datetime_validate_end']">
+          <option *ngFor="let dateString of datetime" [value]="dateString">{{dateString}}</option>
+        </select>
+      </div>
+    </div>
 
     <div *ngIf="!myForm.valid"
       class="ui error message">Form is invalid</div>
