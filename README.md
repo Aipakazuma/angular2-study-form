@@ -94,8 +94,8 @@ this.myForm.controls['test_datetime_validate_end'].valueChanges.subscribe(
   }
 );
 ```
-
-## Pikadayを使う
+## datepickerと組み合わせたinput formがほしい
+### Pikadayを使う
 
 3rd party libraryの使い方になるとか。あと`moment.js`も依存しているらしいので、これもいれないといけない。
 
