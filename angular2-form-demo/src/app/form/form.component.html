@@ -1,3 +1,4 @@
+<script src="pikaday.js"></script>
 <div class="ui raised segment">
   <h2 class="ui header">Demo Form: Sku</h2>
   <form [formGroup]="myForm"
@@ -6,7 +7,6 @@
         class="ui form">
 
     <div class="field" [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
-
       <div class="form-group">
         <label for="skuInput">SKU</label>
         <input type="text"
@@ -50,6 +50,15 @@
           [formControl]="myForm.controls['test_datetime_validate_end']">
           <option *ngFor="let dateString of datetime" [value]="dateString">{{dateString}}</option>
         </select>
+      </div>
+
+      <div class="form-group">
+        <label>pikaday test</label>
+        <input type="text"
+          id="test_datetime_picker"
+          [formControl]="myForm.controls['test_datetime_picker']">
+
+        <p *ngIf="myForm.controls['test_datetime_picker'].hasError('required')" class="ui error message">test_datetime_picker is required</p>
       </div>
     </div>
 
