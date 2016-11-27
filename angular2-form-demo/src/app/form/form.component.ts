@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { formatDate, TimeMath } from '../util/functions';
 
 declare var Pikaday: any;
@@ -23,9 +23,9 @@ export class FormComponent implements OnInit {
   datetime: string[];
   private elementRef: ElementRef;
 
-  constructor(formBuilder: FormBuilder, elementRef: ElementRef) {
+  constructor(private formBuilder: FormBuilder, elementRef: ElementRef) {
     this.elementRef = elementRef;
-    this.myForm = formBuilder.group({
+    this.myForm = this.formBuilder.group({
       'sku': [, Validators.compose([
         Validators.required,
         skuValidator
@@ -41,7 +41,10 @@ export class FormComponent implements OnInit {
       ])],
       'test_datetime_picker': [, Validators.compose([
         Validators.required
-      ])]
+      ])],
+      'test_datetime_group': this.formBuilder.array([
+        this.initTestDatetimeGroup()
+      ])
     });
 
     this.myForm.controls['sku'].valueChanges.subscribe(
@@ -80,6 +83,7 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.myForm.controls['test_datetime_group'].value);
     this.setDatetime();
     var picker = new Pikaday({
       field: this.elementRef.nativeElement.querySelector('#test_datetime_picker'),
@@ -95,6 +99,23 @@ export class FormComponent implements OnInit {
         this.myForm.controls['test_datetime_picker'].setValue(picker.toString());
       }
     });
+  }
+
+  initTestDatetimeGroup() {
+    return this.formBuilder.group({
+      'start': ['', Validators.required],
+      'end': ['', Validators.required]
+    })
+  }
+
+  addDatetimeGroup() {
+    const control = <FormArray>this.myForm.controls['test_datetime_group'];
+    control.push(this.initTestDatetimeGroup());
+  }
+
+  removeDatetimeGroup(i: number) {
+    const control = <FormArray>this.myForm.controls['test_datetime_group'];
+    control.removeAt(i);
   }
 
   setDatetime(): void {

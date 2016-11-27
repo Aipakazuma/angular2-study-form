@@ -60,11 +60,44 @@
 
         <p *ngIf="myForm.controls['test_datetime_picker'].hasError('required')" class="ui error message">test_datetime_picker is required</p>
       </div>
+
+      <!--addresses-->
+      <div class="addresses">
+        <div *ngFor="let testDatetime of myForm.controls['test_datetime_group'].value; let i=index" class="panel panel-default">
+          <div class="panel-heading">
+            <span>Address {{i + 1}}</span>
+            <button type="button" *ngIf="myForm.controls['test_datetime_group'].value.length > 1" (click)="removeDatetimeGroup(i)"></button>
+          </div>
+          <div class="form-group">
+            <label>dynamic form test start</label>
+            <input type="text"
+              id="test_datetime_group_start_{{i}}"
+              [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['start']">
+          </div>
+          <div class="form-group">
+            <label>dynamic form test end</label>
+            <input type="text"
+              id="test_datetime_group_end_{{i}}"
+              [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['end']">
+          </div>
+        </div>
+      </div>
+
+      <div class="margin-20">
+        <a (click)="addDatetimeGroup()" style="cursor: default">
+          Add another address +
+        </a>
+      </div>
     </div>
 
     <div *ngIf="!myForm.valid"
       class="ui error message">Form is invalid</div>
 
     <button type="submit" class="ui button">Submit</button>
+    <div style="margin-top:20px;padding: 10px; background: #ccc;">
+      <div>myForm details:-</div>
+      <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+      <pre>form value: <br>{{myForm.value | json}}</pre>
+    </div>
   </form>
 </div>

@@ -59,6 +59,7 @@ todo
 * [datepickerと組み合わせたinput formがほしい](#datepickerと組み合わせたinput-formがほしい)
   * http://dbushell.github.io/Pikaday/
   * pikadayってやつがいまのところよさそう
+* 動的にフォームを追加する
 
 ## Enter keyを無効にしたい
 
@@ -142,3 +143,19 @@ var picker = new Pikaday({
 ```
 
 って、やれば使えるようになりました。日本語化も対応。
+
+## 動的にフォームを追加する
+
+参考URL。すばらしい（まだ試していないけど）
+(How to Build Nested Model-driven Forms in Angular 2)[https://scotch.io/tutorials/how-to-build-nested-model-driven-forms-in-angular-2]
+
+
+動的に追加したときの`FormControl`属性。ながい
+```html
+<div class="form-group">
+  <label>dynamic form test start</label>
+  <input type="text"
+    id="test_datetime_group_start_{{i}}"
+    [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['start']">
+</div>
+```
