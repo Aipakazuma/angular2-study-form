@@ -61,24 +61,23 @@
         <p *ngIf="myForm.controls['test_datetime_picker'].hasError('required')" class="ui error message">test_datetime_picker is required</p>
       </div>
 
-      <!--addresses-->
-      <div class="addresses">
-        <div *ngFor="let testDatetime of myForm.controls['test_datetime_group'].value; let i=index" class="panel panel-default">
-          <div class="panel-heading">
-            <span>Address {{i + 1}}</span>
-            <button type="button" *ngIf="myForm.controls['test_datetime_group'].value.length > 1" (click)="removeDatetimeGroup(i)"></button>
-          </div>
-          <div class="form-group">
-            <label>dynamic form test start</label>
-            <input type="text"
-              id="test_datetime_group_start_{{i}}"
-              [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['start']">
-          </div>
-          <div class="form-group">
-            <label>dynamic form test end</label>
-            <input type="text"
-              id="test_datetime_group_end_{{i}}"
-              [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['end']">
+      <div formArrayName="test_datetime_group">
+        <div *ngFor="let testDatetime of myForm.controls.test_datetime_group.controls; let i=index" class="panel panel-default">
+          <div [formGroupName]="i">
+            <div class="panel-heading">
+              <span>Address {{i + 1}}</span>
+              <button type="button" *ngIf="myForm.controls.test_datetime_group.controls.length > 1" (click)="removeDatetimeGroup(i)"></button>
+            </div>
+            <div class="form-group">
+              <label>dynamic form test start</label>
+              <input type="text"
+                [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['start']">
+            </div>
+            <div class="form-group">
+              <label>dynamic form test end</label>
+              <input type="text"
+                [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['end']">
+            </div>
           </div>
         </div>
       </div>
@@ -88,6 +87,36 @@
           Add another address +
         </a>
       </div>
+
+      <div formArrayName="addresses">
+        <div *ngFor="let address of myForm.controls.addresses.controls; let i=index" class="panel panel-default">
+          <div class="panel-heading">
+            <span>Address {{i + 1}}</span>
+            <span class="glyphicon glyphicon-remove pull-right" 
+              *ngIf="myForm.controls.addresses.controls.length > 1" 
+              (click)="removeAddress(i)"></span>
+          </div>
+          <div class="panel-body" [formGroupName]="i">
+            <div class="form-group col-xs-6">
+              <label>street</label>
+              <input type="text" class="form-control" formControlName="street">
+              <small [hidden]="myForm.controls.addresses.controls[i].controls.street.valid" class="text-danger">
+                  Street is required
+              </small>
+            </div>
+            <div class="form-group col-xs-6">
+              <label>postcode</label>
+              <input type="text" class="form-control" formControlName="postcode">
+            </div>
+          </div>
+        </div>
+        <div class="margin-20">
+          <a (click)="addAddress()" style="cursor: default">
+            Add another address +
+          </a>
+        </div>
+      </div>
+
     </div>
 
     <div *ngIf="!myForm.valid"

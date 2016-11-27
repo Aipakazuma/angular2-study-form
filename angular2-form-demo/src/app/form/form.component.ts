@@ -44,6 +44,9 @@ export class FormComponent implements OnInit {
       ])],
       'test_datetime_group': this.formBuilder.array([
         this.initTestDatetimeGroup()
+      ]),
+      'addresses': this.formBuilder.array([
+        this.initAddress()
       ])
     });
 
@@ -53,11 +56,11 @@ export class FormComponent implements OnInit {
       }
     );
 
-    // this.myForm.valueChanges.subscribe(
-    //   (form: any) => {
-    //     console.log('form changed to:', form);
-    //   }
-    // );
+    this.myForm.valueChanges.subscribe(
+      (form: any) => {
+        console.log('form changed to:', form);
+      }
+    );
 
     this.myForm.controls['test_datetime_validate_start'].valueChanges.subscribe(
       (value: string) => {
@@ -80,6 +83,19 @@ export class FormComponent implements OnInit {
         console.log(value);
       }
     );
+    // safe
+    // console.log(this.myForm.controls['test_datetime_group']);
+    // out! Property 'controls' does not exist on type 'AbstractControl'.
+    // console.log(this.myForm.controls['test_datetime_group'].controls[0]);
+    // safe !?
+    // console.log(this.myForm.controls['test_datetime_group']['controls']);
+    // safe !!
+    // console.log(this.myForm.controls['test_datetime_group']['controls'][0]['controls']['start']);
+    // this.myForm.controls['test_datetime_group']['controls'][0]['controls']['start'].valueChanges.subscribe(
+    //   (value: string) => {
+    //     console.log(value);
+    //   }
+    // );
   }
 
   ngOnInit() {
@@ -103,8 +119,8 @@ export class FormComponent implements OnInit {
 
   initTestDatetimeGroup() {
     return this.formBuilder.group({
-      'start': ['', Validators.required],
-      'end': ['', Validators.required]
+      'start': [],
+      'end': []
     })
   }
 
@@ -115,6 +131,23 @@ export class FormComponent implements OnInit {
 
   removeDatetimeGroup(i: number) {
     const control = <FormArray>this.myForm.controls['test_datetime_group'];
+    control.removeAt(i);
+  }
+
+  initAddress() {
+    return this.formBuilder.group({
+      'street': ['', Validators.required],
+      'postcode': ['']
+    });
+  }
+
+  addAddress() {
+    const control = <FormArray>this.myForm.controls['addresses'];
+    control.push(this.initAddress());
+  }
+
+  removeAddress(i: number) {
+    const control = <FormArray>this.myForm.controls['addresses'];
     control.removeAt(i);
   }
 
