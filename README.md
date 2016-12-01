@@ -36,6 +36,16 @@ http://stackoverflow.com/questions/38444778/formgroup-expects-a-formgroup-instan
 
 `FormControl`をimportしたら治った。
 
+
+## `Error: Can't resolve all parameters for AnyComponent: (FormBuilder, ?).`
+
+とあるComponentにて、`constructor`にてDIしているサービス（？）の型を宣言していなかった（°ω°
+```javascript
+  constructor(private formBuilder:FormBuilder, private elementRef) { // <- 忘れている
+  }
+```
+
+
 ```
 import {
   FormBuilder,
