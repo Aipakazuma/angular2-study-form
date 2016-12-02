@@ -12,6 +12,7 @@
         <input type="text"
                id="skuInput"
                placeholder="SKU"
+               [datePicker]="myForm.controls['sku']"
                [formControl]="myForm.controls['sku']">
 
         <div *ngIf="!myForm.controls['sku'].valid"
@@ -67,6 +68,12 @@
             <div class="panel-heading">
               <span>Address {{i + 1}}</span>
               <button type="button" *ngIf="myForm.controls.test_datetime_group.controls.length > 1" (click)="removeDatetimeGroup(i)"></button>
+            </div>
+            <div class="form-group">
+              <label>dynamic form test date</label>
+              <input type="text"
+                [datePicker]="myForm.controls['test_datetime_group'].controls[i].controls['date']"
+                [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['date']">
             </div>
             <div class="form-group">
               <label>dynamic form test start</label>

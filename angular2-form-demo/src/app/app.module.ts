@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
+import { DatePickerDirective } from './directives/date.picker.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    FormComponent,
+    DatePickerDirective
   ],
   imports: [
     BrowserModule,

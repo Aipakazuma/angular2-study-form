@@ -119,6 +119,7 @@ export class FormComponent implements OnInit {
 
   initTestDatetimeGroup() {
     return this.formBuilder.group({
+      'date': [],
       'start': [],
       'end': []
     })
@@ -126,7 +127,9 @@ export class FormComponent implements OnInit {
 
   addDatetimeGroup() {
     const control = <FormArray>this.myForm.controls['test_datetime_group'];
-    control.push(this.initTestDatetimeGroup());
+    let group = this.initTestDatetimeGroup();
+    console.log(group.controls['start']);
+    control.push(group);
   }
 
   removeDatetimeGroup(i: number) {

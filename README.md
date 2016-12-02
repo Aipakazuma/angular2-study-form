@@ -70,6 +70,7 @@ todo
   * http://dbushell.github.io/Pikaday/
   * pikadayってやつがいまのところよさそう
 * 動的にフォームを追加する
+* [動的に追加したフォームにpikadayを紐付ける](#動的に追加したフォームにpikadayを紐付ける)
 
 ## Enter keyを無効にしたい
 
@@ -169,3 +170,57 @@ var picker = new Pikaday({
     [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['start']">
 </div>
 ```
+
+## 動的に追加したフォームにpikadayを紐付ける
+
+Directiveを使えばいけました。
+
+
+```javascript
+import { Directive, ElementRef, Renderer, Input }  from '@angular/core';
+
+declare const Pikaday: any;
+
+@Directive({
+  selector: '[datePicker]'
+})
+
+export class DatePickerDirective {
+  @Input('datePicker') datePickerField: any;
+
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer
+  ) {}
+
+  ngOnInit() {
+    var picker = new Pikaday({
+      field: this.elementRef.nativeElement,
+      format: 'YYYY/MM/DD',
+      i18n: {
+        previousMonth : '先月',
+        nextMonth     : '来月',
+        months        : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+        weekdays      : ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'],
+        weekdaysShort : ['日','月','火','水','木','金','土']
+      },
+      onSelect: (date) => {
+        this.datePickerField.setValue(picker.toString());
+      }
+    });
+  }
+}
+```
+
+directiveを使うviewがformControlで実装した場合は、pikadayはコールバックで選択したあとにformControlへ値を渡さないと認識されない。
+色々方法はあると思うが、今回はdirectiveに`@Input('datePicker') datePickerField: any;`を用意して、viewから値を受けれるように実装しました。
+
+```html
+<div class="form-group">
+  <label>dynamic form test date</label>
+  <input type="text"
+    [datePicker]="myForm.controls['test_datetime_group'].controls[i].controls['date']"
+    [formControl]="myForm.controls['test_datetime_group'].controls[i].controls['date']">
+</div>
+```
+
