@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer, Input }  from '@angular/core';
+import { Directive, ElementRef, Input }  from '@angular/core';
 
 declare const Pikaday: any;
 
@@ -10,8 +10,7 @@ export class DatePickerDirective {
   @Input('datePicker') datePickerField: any;
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer
+    private elementRef: ElementRef
   ) {}
 
   ngOnInit() {
