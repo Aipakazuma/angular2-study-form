@@ -223,3 +223,13 @@ directiveを使うviewがformControlで実装した場合は、pikadayはコー�
 </div>
 ```
 
+## nativeなform submitを発火させる
+
+typescript側では普通にFormBuilderでFormGroupとFormControlを構成する。
+
+
+んで、template側では、`<form ngNotForm ...>`とdirectiveを付与すれば、nativeなformのsubmitが使えるようになる。
+この場合、恐らくFormGroupの(ngSubmit)などのイベントは使えなくなる（はず）と思うが、validationなどは通常通り使える。
+
+(Native submit behavior impossible as ngForm does always preventDefault())[https://github.com/angular/angular/issues/7973]
+
