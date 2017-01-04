@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { DatePickerDirective } from './directives/date.picker.directive';
 import { FormUseHtmlPostComponent } from './form-use-html-post/form-use-html-post.component';
+import { ThinkFormDirective } from './think-form.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
     DatePickerDirective,
-    FormUseHtmlPostComponent
+    FormUseHtmlPostComponent,
+    ThinkFormDirective
   ],
   imports: [
     BrowserModule,

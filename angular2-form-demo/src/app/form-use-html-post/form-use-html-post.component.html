@@ -1,5 +1,5 @@
-<form ngNoForm method="post" action="http://www.azana.co.jp">
-  <input type="text" [formControl]="myForm.controls['submit']">
+<form [formGroup]="myForm" ngNoForm action="http://www.yahoo.co.jp" method="post">
+  <input type="text" name="submit" [formControl]="myForm.controls['submit']">
   <p *ngIf="myForm.controls['submit'].hasError('required')">バリデーションテスト</p>
-  <button type="submit">送信</button>
+  <button type="submit" onclick="submit()">送信</button>
 </form>

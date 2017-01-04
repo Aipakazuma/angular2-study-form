@@ -233,3 +233,10 @@ typescript側では普通にFormBuilderでFormGroupとFormControlを構成する
 
 (Native submit behavior impossible as ngForm does always preventDefault())[https://github.com/angular/angular/issues/7973]
 
+`[formGroup]="myForm"`って感じで併用しても使えます。ただその場合は、
+
+1. `<form>`タグに`action="http://..."`と`method="get or post"`を付与する
+2. 各`<input>`タグの属性に`name=""`を付与すること
+3. `<button type="submit"...`に`onclick="submit()"`を付与する。
+
+なんかきもーい
